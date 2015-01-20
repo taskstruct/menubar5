@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name=Window Menubar
+Comment=Show window menubars
+Icon=show-menu
+Type=Service
+X-KDE-ServiceTypes=Plasma/Applet
+
+X-KDE-Library=plasma_applet_menubar
+X-KDE-PluginInfo-Author=Aurélien Gâteau
+X-KDE-PluginInfo-Email=aurelien.gateau@canonical.com
+X-KDE-PluginInfo-Name=menubar
+X-KDE-PluginInfo-Version=1.0
+X-KDE-PluginInfo-Website=http://launchpad.net/plasma-widget-menubar/
+X-KDE-PluginInfo-Category=Windows and Tasks
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true
+
+X-Plasma-Requires-FileDialog=Unused
+X-Plasma-Requires-LaunchApp=Unused
