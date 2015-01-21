@@ -33,15 +33,13 @@ Loader {
 
     property bool useButtonFormFactorCfg: Plasmoid.configuration.useButtonFormFactor
 
-//    Layout.fillWidth: true
+    // We want fill width for horizontal panels with bar layout or for vertical panels
+    Layout.fillWidth: ( ( Plasmoid.formFactor === Plasmoid.Horizontal ) && !useButtonFormFactorCfg ) || ( Plasmoid.formFactor === Plasmoid.Vertical )
+    // Fill height only in horizontal panels
+    Layout.fillHeight: Plasmoid.formFactor === Plasmoid.Horizontal
 
     Plasmoid.backgroundHints: Plasmoid.NoBackground
     Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
-
-//    onUseButtonFormFactorCfgChanged: {
-//        if( true ) {
-//        }
-//    }
 
     source: {
         console.debug("Trying to load...",  Plasmoid.formFactor, "  ", useButtonFormFactorCfg )

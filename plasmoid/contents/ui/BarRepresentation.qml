@@ -31,9 +31,6 @@ import org.kde.plasma.private.menubar 1.0
 Item {
     id: rootItem
 
-    Layout.fillWidth: true
-    Layout.fillHeight: true
-
     onWidthChanged: layout.recreateLayout()
 
     Component {
