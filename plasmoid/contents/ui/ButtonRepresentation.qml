@@ -1,10 +1,11 @@
 import QtQuick 2.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.private.menubar 1.0
 
 PlasmaComponents.ToolButton {
     id: button
-    text: i18n("Menubar")
+    text: (Plasmoid.Vertical === Plasmoid.formFactor) ? "" : i18n("Menubar")
     iconName: "show-menu"
 
     MenuComponent {

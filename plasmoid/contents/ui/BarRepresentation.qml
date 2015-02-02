@@ -33,10 +33,24 @@ Item {
 
     onWidthChanged: layout.recreateLayout()
 
+    Rectangle {
+        color: "lightblue"
+        opacity: 0.4
+        anchors.fill: parent
+    }
+
     Component {
         id: menuButtonCmp
 
         MenuButton {
+        }
+    }
+
+    Component {
+        id: spacer
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
         }
     }
 
@@ -49,7 +63,7 @@ Item {
         }
     }
 
-    Item {
+    RowLayout {
         id: layout
 
         anchors.fill: parent
@@ -58,11 +72,11 @@ Item {
         property var __buttonList: []
 
         function deleteOldItems() {
-            console.log("items: ", children.length)
-            console.log("dynitems: ", __buttonList.length)
+            // console.log("items: ", children.length)
+            // console.log("dynitems: ", __buttonList.length)
             while(__buttonList.length ) {
                 var item = __buttonList.pop()
-                console.debug("destroy", item.toString())
+                // console.debug("destroy", item.toString())
                 item.destroy()
                 item = null
             }
@@ -79,13 +93,13 @@ Item {
                 }
             }
 
-            console.log("items: ", children.length)
-            console.log("item type: ", children[0])
-            console.log("dynitems: ", __buttonList.length)
+            // console.log("items: ", children.length)
+            // console.log("item type: ", children[0])
+            // console.log("dynitems: ", __buttonList.length)
 
             extender.visible = false
 
-            console.log("rect: ", childrenRect)
+            // console.log("rect: ", childrenRect)
         }
 
         function canAddItem(itemWidth, numberOfItems) {
@@ -93,11 +107,11 @@ Item {
             if( __buttonList.length == ( numberOfItems - 1 ) ) {
                 // this is the last item.
                 // check if it fit in layout
-                return ( childrenRect.width <= layout.width )
+                return ( implicitWidth <= layout.width )
             }
             else {
                 // there is at least one more item, so we need room for extender
-                return ( childrenRect.width <= ( layout.width - extender.width ) )
+                return ( implicitWidth <= ( layout.width - extender.width ) )
             }
         }
 
@@ -110,13 +124,13 @@ Item {
             // add new items
             var numberOfItems = DBusMenuApi.menuModel["root"].length
 
-            console.log("2 items: ", children.length)
-            console.log("2 item type: ", children[0])
-            console.log("2 dynitems: ", __buttonList.length)
+            // console.log("2 items: ", children.length)
+            // console.log("2 item type: ", children[0])
+            // console.log("2 dynitems: ", __buttonList.length)
 
             do{
                 var modelData = DBusMenuApi.menuModel["root"][__buttonList.length]
-                var instance = menuButtonCmp.createObject( layout, { "x" : childrenRect.width + spacing, "text" : modelData["label"].text.replace('&', '') } )
+                var instance = menuButtonCmp.createObject( layout, { "text" : modelData["label"].text.replace('&', '') } )
 
                 if( canAddItem(instance.width, numberOfItems) ) {
                     // add item's menu
@@ -127,23 +141,31 @@ Item {
                     // there is no place for item. Destroy it and exit loop
                     instance.destroy()
                     instance = null
+
+                    // show extender after last item
+                    extender.x = implicitWidth + spacing
+                    extender.visible = true
+
                     break;
                 }
             }
             while( __buttonList.length < numberOfItems )
 
-            console.log("3 items: ", children.length)
-            console.log("3 item type: ", children[0])
-            console.log("3 dynitems: ", __buttonList.length)
+            // create spacer item to fill remainnig space in layout
+            var sp = spacer.createObject( layout )
+            __buttonList.push(sp)
+
+            // console.log("3 items: ", children.length)
+            // console.log("3 item type: ", children[0])
+            // console.log("3 dynitems: ", __buttonList.length)
 
             if( __buttonList.length < numberOfItems ) {
-                // show extender after last item
-                extender.x = childrenRect.width + spacing
-                extender.visible = true
 
                 // fill extender menu
                 //TODO
             }
+
+
         }
     }
 

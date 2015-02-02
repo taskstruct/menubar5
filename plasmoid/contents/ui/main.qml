@@ -38,8 +38,8 @@ Loader {
     // Fill height only in horizontal panels
     Layout.fillHeight: Plasmoid.formFactor === Plasmoid.Horizontal
 
-    Layout.preferredWidth: item.width
-    Layout.preferredHeight: item.height
+//    Layout.preferredWidth: item.width
+//    Layout.preferredHeight: item.height
 
     Plasmoid.backgroundHints: Plasmoid.NoBackground
     Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
@@ -61,8 +61,5 @@ Loader {
 
     Component.onCompleted: {
         DBusMenuApi.init(plasmoid)
-        console.debug("onCompleted!")
     }
-
-    onSourceChanged: console.debug("Source is", source)
 }

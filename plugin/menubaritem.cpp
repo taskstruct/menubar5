@@ -114,8 +114,8 @@ void MenuBarItem::updateActiveWinId()
 {
     WId id = KWindowSystem::activeWindow();
 
-    qDebug() << "Plasma window id is " << m_plasmaDesktopWinId;
-    qDebug() << "Active window id is " << id;
+    KWindowInfo info(id, NET::WMVisibleName);
+    qDebug() << " updateActiveWinId: " << info.visibleName();
 
     if (id == m_activeWinId) {
         return;
@@ -127,6 +127,7 @@ void MenuBarItem::updateActiveWinId()
     }
 
     m_activeWinId = id;
+
     createMenuBar();
 }
 
