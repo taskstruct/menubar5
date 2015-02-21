@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 2.8.12)
 
 project(menubar5)
 
-set(REQUIRED_QT_VERSION 5.3.0)
-set(KF5_MIN_VERSION 5.3.0)
+set(REQUIRED_QT_VERSION 5.4.0)
+set(KF5_MIN_VERSION 5.7.0)
 
 find_package(ECM 1.0.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
@@ -27,4 +27,4 @@ add_subdirectory(plugin)
 
 plasma_install_package(plasmoid org.kde.plasma.menubar)
 
-feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
+feature_summary(WHAT ALL)

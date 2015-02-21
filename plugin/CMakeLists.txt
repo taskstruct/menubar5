@@ -30,13 +30,7 @@ target_link_libraries(menubarplugin
     dbusmenu-qt5
 )
 
-message(STATUS "Default is ${QML_INSTALL_DIR}")
-message(STATUS "KDE is ${KDE_INSTALL_QMLDIR}")
-#message(STATUS ${PLASMA_DATA_INSTALL_DIR})
-#message(STATUS ${SERVICES_INSTALL_DIR})
-#message(STATUS ${DATA_INSTALL_DIR})
 
+install(TARGETS menubarplugin DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/plasma/private/menubar)
 
-install(TARGETS menubarplugin DESTINATION ${QML_INSTALL_DIR}/org/kde/plasma/private/menubar)
-
-install(FILES qmldir DESTINATION ${QML_INSTALL_DIR}/org/kde/plasma/private/menubar)
+install(FILES qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/plasma/private/menubar)
